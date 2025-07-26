@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_26_021412) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_023900) do
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -35,7 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_021412) do
   create_table "plans", force: :cascade do |t|
     t.integer "patient_id"
     t.integer "doctor_id"
-    t.string "type"
+    t.string "plan_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
