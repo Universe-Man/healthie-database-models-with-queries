@@ -1,5 +1,5 @@
 class Plan < ApplicationRecord
-  belongs_to :doctor
-  belongs_to :patient
-  has_many :journal_entries, through: :patients
+  belongs_to :provider
+  belongs_to :client
+  has_many :journal_entries
 end

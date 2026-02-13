@@ -10,34 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_28_224709) do
-  create_table "doctors", force: :cascade do |t|
+ActiveRecord::Schema[8.0].define(version: 2026_02_13_214420) do
+  create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_clients_on_email", unique: true
   end
 
   create_table "journal_entries", force: :cascade do |t|
-    t.integer "patient_id"
+    t.integer "client_id", null: false
+    t.integer "plan_id", null: false
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "plan_id"
+    t.index ["client_id"], name: "index_journal_entries_on_client_id"
+    t.index ["plan_id"], name: "index_journal_entries_on_plan_id"
   end
 
-  create_table "patients", force: :cascade do |t|
+  create_table "plans", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.integer "provider_id", null: false
+    t.string "plan_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_plans_on_client_id"
+    t.index ["provider_id"], name: "index_plans_on_provider_id"
+  end
+
+  create_table "providers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_providers_on_email", unique: true
   end
 
-  create_table "plans", force: :cascade do |t|
-    t.integer "patient_id"
-    t.integer "doctor_id"
-    t.string "plan_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_foreign_key "journal_entries", "clients"
+  add_foreign_key "journal_entries", "plans"
+  add_foreign_key "plans", "clients"
+  add_foreign_key "plans", "providers"
 end
