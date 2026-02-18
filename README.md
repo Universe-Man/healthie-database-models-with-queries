@@ -4,7 +4,7 @@ Hello Healthie Team!!
 
 I'm Ian Pollack and thank you for reviewing my Database and Model Design with Queries assessment!
 
-As one would expect, I utilized the internet and Google to reference docs and syntax, but if you have any questions about my approach I'd love to answer them.
+I utilized the internet and Google to reference docs and syntax, but if you have any questions about my approach I'd love to answer them.
 
 ## To setup this application:
   - Run "bundle install".
